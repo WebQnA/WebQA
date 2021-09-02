@@ -41,6 +41,9 @@ pip install transformers==4.9.2
 
 <br>
 
+Download BART checkpoint on ParaBank: https://drive.google.com/file/d/1_7JfF7KOInb7ZrxKHIigTMR4ChVET01m/view?usp=sharing
+Clone BARTScore repo https://github.com/neulab/BARTScore
+
 Eval on all question categories
 ```
 CUDA_VISIBLE_DEVICES=1 python eval.py --file <path_to_output_file> 
