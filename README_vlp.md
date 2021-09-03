@@ -14,4 +14,5 @@ python setup.py install --cuda_ext --cpp_ext
 
 ```
 pip install datasets==1.7.0
+pip install opencv-python==3.4.2.17 
 ```
