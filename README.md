@@ -6,7 +6,7 @@
 ### Output Format (.json)
 ```
 {<guid>: {'sources': [<image_id>/<snippet_id>, ..., ],
-          A': ["xxxxxxx"] },
+          'answer': ["xxxxxxx"] },
  <guid>: {...},
  <guid>: {...},
 
