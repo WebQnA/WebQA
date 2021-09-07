@@ -1,5 +1,13 @@
 ### Download Data
-[Main](http://tiger.lti.cs.cmu.edu/yingshac/WebQA_data_first_release/WebQA_data_first_release.7z), [Images](http://tiger.lti.cs.cmu.edu/yingshac/WebQA_data_first_release/WebQA_imgs_base64.7z)
+- [Main Data](http://tiger.lti.cs.cmu.edu/yingshac/WebQA_data_first_release/WebQA_data_first_release.7z)
+
+- Images
+
+We compressed and split the large img file into 51 chunks of 1GB. You can download all chunks by running [this script](https://github.com/WebQnA/WebQA/blob/main/download_imgs.sh).
+
+To unzip and merge all chunks, run ` 7z x imgs.7z.001 `
+
+We also provide google drive download [links](https://drive.google.com/drive/folders/1ApfD-RzvJ79b-sLeBx1OaiPNUYauZdAZ?usp=sharing) 
 
 ### [Explore Data](https://github.com/WebQnA/WebQA/blob/main/demo/Take_a_look_WebQA.ipynb)
 
