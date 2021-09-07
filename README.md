@@ -3,7 +3,7 @@
 
 - Images
 
-We compressed and split the large img file into 51 chunks of 1GB. You can download all chunks by running [this script](https://github.com/WebQnA/WebQA/blob/main/download_imgs.sh).
+The large img file is compressed and split into 51 chunks of 1GB. You can download all chunks at once by running [this script](https://github.com/WebQnA/WebQA/blob/main/download_imgs.sh).
 
 To unzip and merge all chunks, run ` 7z x imgs.7z.001 `
 
