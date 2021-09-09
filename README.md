@@ -14,7 +14,7 @@ We also provide google drive download [links](https://drive.google.com/drive/fol
 ### Output Format (.json)
 ```
 {<guid>: {'sources': [<image_id>/<snippet_id>, ..., ],
-          'answer': ["xxxxxxx"] },
+          'answer': "xxxxxxx" },
  <guid>: {...},
  <guid>: {...},
 
