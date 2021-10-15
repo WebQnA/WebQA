@@ -1,5 +1,7 @@
 ### News
 
+**Oct 15 Update**: We decided to release the output files of our baseline models in case they will be helpful for future investigations. Feel free to [check it out](https://github.com/WebQnA/WebQA/tree/main/baseline_output_files)!
+
 **Oct 9 Update**: Please note that we've updated the image reading method from `cv2` to `PIL` in the demo notebook. `ImageFile.LOAD_TRUNCATED_IMAGES = True
 ` is the key to avoid "Image NoneType error".
 
