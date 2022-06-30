@@ -5,7 +5,7 @@ Here is the official evaluation script used by our leaderboard: https://github.c
 
 Please note that this script needs a `Keywords_answer` field, which is only included in the (hidden) testing set.
 If you hope to evaluate your model's performance in a similar manner on the validation set, we please refer to the script below for approximating `Keywords_answer` annotations.
-The follow code is contributed by Qibin Chen https://github.com/qibinc
+The following code is contributed by Qibin Chen https://github.com/qibinc
 
 ```
 def _webqa_acc_approx(predction, ground_truth, domain=None):
