@@ -1,7 +1,7 @@
 Hi all:
 
 We realize that sometimes Eval.ai fails to communicate with our eval server. 
-So, we provide a script for calling our eval server on your local computer. 
+So, we provide a script for calling our eval server on your local computer as a remedy. 
 You're more than welcome to try this out!
 
 ```
