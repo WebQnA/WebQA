@@ -1,4 +1,9 @@
-import requests, json, random
+import random
+import requests
+import urllib.request
+import numpy as np
+import json, random, copy, os
+from tqdm import tqdm
 USER_AGENT_LIST = [
             "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; AcooBrowser; .NET CLR 1.1.4322; .NET CLR 2.0.50727)",
             "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; Acoo Browser; SLCC1; .NET CLR 2.0.50727; Media Center PC 5.0; .NET CLR 3.0.04506)",
@@ -37,7 +42,7 @@ USER_AGENT_LIST = [
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
         ]
 
-API_URL = "http://128.2.205.68:5000/metric_post"
+API_URL = "http://128.2.218.42:5000/metric_post"
 
 def request(params):
   
@@ -55,8 +60,44 @@ def request(params):
     r = requests.post(API_URL, params=params, headers=headers)
     return r
 
-def evaluate(user_submission_file, phase_codename):
+def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwargs):
     print("Starting Evaluation.....")
+    """
+    Evaluates the submission for a particular challenge phase and returns score
+    Arguments:
+
+        `test_annotations_file`: Path to test_annotation_file on the server
+        `user_submission_file`: Path to file submitted by the user
+        `phase_codename`: Phase to which submission is made
+
+        `**kwargs`: keyword arguments that contains additional submission
+        metadata that challenge hosts can use to send slack notification.
+        You can access the submission metadata
+        with kwargs['submission_metadata']
+
+        Example: A sample submission metadata can be accessed like this:
+        >>> print(kwargs['submission_metadata'])
+        {
+            'status': u'running',
+            'when_made_public': None,
+            'participant_team': 5,
+            'input_file': 'https://abc.xyz/path/to/submission/file.json',
+            'execution_time': u'123',
+            'publication_url': u'ABC',
+            'challenge_phase': 1,
+            'created_by': u'ABC',
+            'stdout_file': 'https://abc.xyz/path/to/stdout/file.json',
+            'method_name': u'Test',
+            'stderr_file': 'https://abc.xyz/path/to/stderr/file.json',
+            'participant_team_name': u'Test Team',
+            'project_url': u'http://foo.bar',
+            'method_description': u'ABC',
+            'is_public': False,
+            'submission_result_file': 'https://abc.xyz/path/result/file.json',
+            'id': 123,
+            'submitted_at': u'2017-03-20T19:22:03.880652Z'
+        }
+    """
     output = {}
     if phase_codename == "test":
         print("Evaluating for WebQA testing split")
@@ -69,6 +110,7 @@ def evaluate(user_submission_file, phase_codename):
             fl = 0
             acc = 0
             mul = 0
+            fl_lowercase = 0
             
             user_C = []
             user_G = []
@@ -84,6 +126,7 @@ def evaluate(user_submission_file, phase_codename):
                     co = result['count']
                     count += co
                     fl += co*result['Fluency']
+                    fl_lowercase += co*result['Fluency_lowercase']
                     acc += co*result['Accuracy']
                     mul += co*result['mul']
                     fi += co*result['filter']
@@ -97,6 +140,7 @@ def evaluate(user_submission_file, phase_codename):
                 co = result['count']
                 count += co
                 fl += co*result['Fluency']
+                fl_lowercase += co*result['Fluency_lowercase']
                 acc += co*result['Accuracy']
                 mul += co*result['mul']
                 fi += co*result['filter']
@@ -110,6 +154,7 @@ def evaluate(user_submission_file, phase_codename):
                     "test_split": {
                         "Retrieval": round(fi/7540, 4),
                         "QA-FL": round(fl/7540, 4),
+                        "QA-FL(lowercase)": round(fl_lowercase/7540, 4),
                         "QA-Acc": round(acc/7540, 4),
                         "QA": round(mul/7540, 4),
                     }
