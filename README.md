@@ -8,7 +8,7 @@
 <br>
 
 ### Download Data
-- [Main Data](http://tiger.lti.cs.cmu.edu/yingshac/WebQA_data_first_release/WebQA_data_first_release.7z)
+- [Main Data](https://drive.google.com/drive/folders/1ApfD-RzvJ79b-sLeBx1OaiPNUYauZdAZ)
 
 The main data is split into two files. One for train+val (36,766+4,966 samples) and the other for test (7,540 samples).
 
